@@ -1,0 +1,60 @@
+﻿<Page x:Class="Client.Pages.ForgotPassworPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Client.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="ForgotPassworPage">
+
+    <Grid Background="#FFDADADA">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 0" HorizontalAlignment="Left">
+                <Image Width="150" Height="150" Source="/Resources/Logo.png" RenderOptions.BitmapScalingMode="Fant"/>
+                <StackPanel Margin="20 0 0 0">
+                    <TextBlock Text="Real Health" Style="{StaticResource Header}" FontSize="60" Foreground="#FFB30707"/>
+                    <TextBlock Text="Ваше здоровье - ваша ответственность" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                </StackPanel>
+                <TextBlock Text="Страница восстановления" FontSize="38" Width="370" Margin="110 0 0 0" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+
+            </StackPanel>
+            <StackPanel Margin="0 20 0 20" Width="1100">
+                <Line Stroke="#FFB30707" StrokeThickness="4" X1="0" X2="1100"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="20 10 20 0" Width="500" HorizontalAlignment="Left">
+                        <TextBlock Text="Логин" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                        <TextBox x:Name="TbLogin" Height="40" MaxLength="20" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Кодовый вопрос" FontSize="28" Width="290" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0"/>
+                            <TextBlock Text="&#xf05a;" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand" Foreground="#FF00965C" Style="{StaticResource SpecialSymbols}" ToolTip="Вопрос, который задается при восстановлении пароля пользователя"/>
+                        </StackPanel>
+                        <TextBox x:Name="TbCodeQuestion" IsEnabled="False" Height="40" MaxLength="20" FontSize="28"  BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                        <TextBlock Text="Ответ на кодовый вопрос" FontSize="28" Width="460" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0" />
+                        <TextBox x:Name="TbCodeAnswer" Height="40" MaxLength="20" FontSize="28"  BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                    </StackPanel>
+                    <StackPanel Margin="20 10 20 0" Width="500" HorizontalAlignment="Left">
+
+                        <StackPanel x:Name="ResetPasswordBlock">
+                            <TextBlock Text="Новый пароль" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                            <PasswordBox x:Name="PbPassword" Height="40" MaxLength="20" FontSize="28" IsEnabled="False" BorderThickness="2" Style="{StaticResource FontPasswordBox}" PasswordChar="*" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                            <TextBlock Text="Повторите новый пароль" FontSize="28" Width="490" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 20 0 0"/>
+                            <PasswordBox x:Name="PbSecondPassword" Height="40" MaxLength="20" FontSize="28" IsEnabled="False" BorderThickness="2" Style="{StaticResource FontPasswordBox}" PasswordChar="*" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ClearBtn" Content="Очистить" Width="160" FontSize="22" Height="50" Style="{StaticResource DefaltRedBtn}" HorizontalAlignment="Right" Click="ClearBtn_Click" Margin="0 20 0 0"/>
+
+                            <Button x:Name="ResetPasswordBtn" Content="Сменить пароль" Width="320" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Right" Click="RegBtn_Click" Margin="20 20 0 0" Cursor="Hand"/>
+                        </StackPanel>
+                        <TextBlock x:Name="BackBtn" HorizontalAlignment="Left" Text="Вернуться к авторизации" FontSize="18" Height="26" Style="{StaticResource HyperLinkText}" FontWeight="DemiBold" MouseLeftButtonDown="BackBtn_MouseLeftButtonDown" Cursor="Hand" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</Page>
