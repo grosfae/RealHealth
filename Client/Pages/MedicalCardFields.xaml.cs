@@ -27,6 +27,7 @@ namespace Client.Pages
             InitializeComponent();
             contextMedicalCard = medicalCard;
             DataContext = contextMedicalCard;
+            CbGender.ItemsSource = App.DB.Gender.ToList();
         }
 
         private void BackBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -50,7 +51,6 @@ namespace Client.Pages
             contextMedicalCard.DateOfBirth = DateTime.Today;
 
         }
-
         private void NoneSpaceBar_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
