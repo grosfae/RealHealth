@@ -26,6 +26,8 @@ namespace Client.Components
         }
     
         public virtual DbSet<CodeQuestion> CodeQuestion { get; set; }
+        public virtual DbSet<DailyHealth> DailyHealth { get; set; }
+        public virtual DbSet<FormForDoctors> FormForDoctors { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<MedicalCard> MedicalCard { get; set; }
         public virtual DbSet<Role> Role { get; set; }

@@ -5,10 +5,112 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Client.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="850" d:DesignWidth="1200"
       Title="MenuPage">
 
-    <Grid>
-        
+    <Grid Background="#FFDADADA">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 0" HorizontalAlignment="Left">
+                <Image Width="150" Height="150" Source="/Resources/Logo.png" RenderOptions.BitmapScalingMode="Fant"/>
+                <StackPanel Margin="20 0 0 0">
+                    <TextBlock Text="Real Health" Style="{StaticResource Header}" FontSize="60" Foreground="#FFB30707"/>
+                    <TextBlock Text="Ваше здоровье - ваша ответственность" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                </StackPanel>
+                <TextBlock Text="Медицинская карта" FontSize="38" Width="370" Margin="110 0 0 0" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+
+            </StackPanel>
+            <StackPanel Margin="0 20 0 20" Width="1100">
+                <Line Stroke="#FFB30707" StrokeThickness="4" X1="0" X2="1100"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Grid.Column="0">
+                        <Button x:Name="TransportBtn" Style="{StaticResource MenuBtn}" Click="TransportBtn_Click" Height="70">
+                            <StackPanel>
+                                <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/MenuIcons/TransportGray.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=TransportBtn}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/MenuIcons/TransportWhite.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="ShipmentBtn" Style="{StaticResource MenuBtn}" Click="ShipmentBtn_Click" Height="70">
+                            <StackPanel>
+                                <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/MenuIcons/ShipmentGray.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ShipmentBtn}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/MenuIcons/ShipmentWhite.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="CargoBtn" Style="{StaticResource MenuBtn}" Click="CargoBtn_Click" Height="70">
+                            <StackPanel>
+                                <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/MenuIcons/CargoGray.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CargoBtn}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/MenuIcons/CargoWhite.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="ProviderBtn" Style="{StaticResource MenuBtn}" Click="ProviderBtn_Click" Height="70">
+                            <StackPanel>
+                                <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/MenuIcons/ProviderGray.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProviderBtn}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/MenuIcons/ProviderWhite.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+
+                        <Button x:Name="MarkBtn" Style="{StaticResource MenuBtn}" Click="MarkBtn_Click" Height="70">
+                            <StackPanel>
+                                <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/MenuIcons/MarkGray.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MarkBtn}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/MenuIcons/MarkWhite.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
+
 </Page>

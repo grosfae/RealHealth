@@ -59,7 +59,7 @@ namespace Client.Pages
             Properties.Settings.Default.Save();
 
             App.LoggedUser = user;
-            if (user.MedicalCard == null)
+            if (user.MedicalCard.Count() == 0)
             {
                 NavigationService.Navigate(new MedicalCardFields(new MedicalCard()));
             }
