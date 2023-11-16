@@ -24,5 +24,20 @@ namespace Client.Pages
         {
             InitializeComponent();
         }
+
+        private void MedCardBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ListQuestionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void HealthCheckBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

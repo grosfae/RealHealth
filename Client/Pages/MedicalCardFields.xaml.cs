@@ -73,8 +73,11 @@ namespace Client.Pages
                 MessageBox.Show(errorMessage);
                 return;
             }
-            contextMedicalCard.UserId = App.LoggedUser.Id;
-            App.DB.MedicalCard.Add(contextMedicalCard);
+            if (contextMedicalCard.Id == 0)
+            {
+                contextMedicalCard.UserId = App.LoggedUser.Id;
+                App.DB.MedicalCard.Add(contextMedicalCard);
+            }
             App.DB.SaveChanges();
             NavigationService.GoBack();
             MessageBox.Show("Медицинская карта успешно заполнена!");
