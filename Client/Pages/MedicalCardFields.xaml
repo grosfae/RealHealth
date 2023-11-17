@@ -16,7 +16,7 @@
                     <TextBlock Text="Real Health" Style="{StaticResource Header}" FontSize="60" Foreground="#FFB30707"/>
                     <TextBlock Text="Ваше здоровье - ваша ответственность" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
                 </StackPanel>
-                <TextBlock Text="Медицинская карта" FontSize="38" Width="370" Margin="110 0 0 0" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                <TextBlock Text="Карта пациента" FontSize="38" Width="370" Margin="110 0 0 0" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
 
             </StackPanel>
             <StackPanel Margin="0 20 0 20" Width="1100">

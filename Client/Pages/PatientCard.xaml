@@ -1,0 +1,58 @@
+﻿<Page x:Class="Client.Pages.PatientCard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Client.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="PatientCard">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="20 10 20 0" Width="500" HorizontalAlignment="Left">
+                <TextBlock Text="Имя" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                <TextBox x:Name="TbName" Text="{Binding FirstName}" Height="40" MaxLength="20" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                <TextBlock Text="Фамилия" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0"/>
+                <TextBox x:Name="TbSurname" Text="{Binding LastName}" Height="40" MaxLength="20" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                <TextBlock Text="Отчество" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0"/>
+                <TextBox x:Name="TbPatronymic" Text="{Binding Patronymic}" Height="40" MaxLength="20" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <Button x:Name="ClearBtn" Content="Очистить" Width="160" FontSize="22" Height="50" Style="{StaticResource DefaltRedBtn}" HorizontalAlignment="Right" Click="ClearBtn_Click" Margin="0 20 0 0"/>
+
+                    <Button x:Name="NextBtn" Content="Сохранить" Width="320" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Right" Click="NextBtn_Click" Margin="20 20 0 0" Cursor="Hand"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="20 10 20 0" Width="440" HorizontalAlignment="Left" Orientation="Horizontal">
+
+                <StackPanel>
+                    <StackPanel Width="230" HorizontalAlignment="Left">
+                        <TextBlock Text="Рост" FontSize="28" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" />
+                        <TextBox x:Name="TbHeight" Text="{Binding Height}" Height="40" MaxLength="3" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput"/>
+                    </StackPanel>
+
+                    <StackPanel Width="230" HorizontalAlignment="Left" Margin="0 10 0 0">
+                        <TextBlock Text="Вес" FontSize="28" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" />
+                        <TextBox x:Name="TbWeight" Text="{Binding Weight}" Height="40" MaxLength="3" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Margin="5 10 0 0">
+                        <StackPanel Width="200" HorizontalAlignment="Left">
+                            <TextBlock Text="Пол" FontSize="28" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" />
+                            <ComboBox x:Name="CbGender" SelectedItem="{Binding Gender}" IsEditable="True" IsReadOnly="True" Text="Выберите пол" FontSize="20" VerticalContentAlignment="Center" Style="{StaticResource FontComboBox}" DisplayMemberPath="Name" Height="40"/>
+                        </StackPanel>
+
+                        <StackPanel Width="260" HorizontalAlignment="Right" Margin="0 10 0 0">
+                            <TextBlock Text="Дата рождения"  FontSize="28" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" />
+                            <Viewbox Height="40">
+                                <DatePicker x:Name="DtDateOfBirth" Width="160" SelectedDate="{Binding DateOfBirth}"/>
+                            </Viewbox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</Page>

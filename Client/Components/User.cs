@@ -17,6 +17,7 @@ namespace Client.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.BodyHealth = new HashSet<BodyHealth>();
             this.DailyHealth = new HashSet<DailyHealth>();
             this.FormForDoctors = new HashSet<FormForDoctors>();
             this.MedicalCard = new HashSet<MedicalCard>();
@@ -29,6 +30,8 @@ namespace Client.Components
         public int CodeQuestionId { get; set; }
         public string CodeAnswer { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BodyHealth> BodyHealth { get; set; }
         public virtual CodeQuestion CodeQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DailyHealth> DailyHealth { get; set; }

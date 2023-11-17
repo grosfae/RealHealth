@@ -23,11 +23,12 @@ namespace Client.Pages
         public MenuPage()
         {
             InitializeComponent();
+            MenuFrame.Navigate(new ProfilePage(App.LoggedUser.BodyHealth.FirstOrDefault()));
         }
 
         private void MedCardBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            MenuFrame.Navigate(new PatientCard(App.LoggedUser.MedicalCard.FirstOrDefault()));
         }
 
         private void ListQuestionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -37,7 +38,7 @@ namespace Client.Pages
 
         private void HealthCheckBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            MenuFrame.Navigate(new ProfilePage(App.LoggedUser.BodyHealth.FirstOrDefault()));
         }
     }
 }

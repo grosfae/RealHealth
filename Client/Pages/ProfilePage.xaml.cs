@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Client.Pages
     /// </summary>
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
+        BodyHealth contextBody;
+        public ProfilePage(BodyHealth bodyHealth)
         {
             InitializeComponent();
+            contextBody = bodyHealth;
+            DataContext = contextBody;
         }
+
+
     }
 }

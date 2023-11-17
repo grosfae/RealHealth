@@ -13,13 +13,25 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="380"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" Height="500">
+        <Grid Grid.Column="1" Height="500" Margin="0 10 0 0">
             <Image Source="/Resources/Human.png" Stretch="Uniform" Height="500"/>
             <Grid>
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Image Source="/Resources/HealthIcon.png" Height="30" Width="30" RenderOptions.BitmapScalingMode="Fant"/>
+                    <TextBlock Text="{Binding GeneralHealth}" Style="{StaticResource SecondText}" FontSize="25" VerticalAlignment="Center" Margin="5 0 0 0" FontWeight="Bold" >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="{Binding GeneralColor}" Offset="0.033"/>
+                                <GradientStop Color="#FF131615" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBlock Text="/440" Style="{StaticResource SecondText}" Foreground="Gray" FontSize="18" VerticalAlignment="Bottom"/>
+                </StackPanel>
                 <Ellipse x:Name="ElHead" Width="15" Height="15" VerticalAlignment="Top" Margin="2 20 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElHeadColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElHeadColorSpot" Color="{Binding HeadColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -37,11 +49,11 @@
                         <TextBlock Text="Голова" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbHead" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbHead" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbHead" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding HeadHp, StringFormat='{}{0}/35'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbHead" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Maximum="35" BorderThickness="0" Value="{Binding HeadHp}" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbHeadColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbHeadColorSpot" Color="{Binding HeadColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -52,7 +64,7 @@
                 <Ellipse x:Name="ElTorso" Width="15" Height="15" VerticalAlignment="Top" Margin="2 120 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElTorsoColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElTorsoColorSpot" Color="{Binding TorsoColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -70,11 +82,11 @@
                         <TextBlock Text="Грудная клетка" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbTorso" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbTorso" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbTorso" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding TorsoHp, StringFormat='{}{0}/85'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbTorso" Width="105" Height="15" Margin="0 2 0 0" Maximum="85" Value="{Binding TorsoHp}"  Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbTorsoColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbTorsoColorSpot" Color="{Binding TorsoColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -85,7 +97,7 @@
                 <Ellipse x:Name="ElStomach" Width="15" Height="15" VerticalAlignment="Top" Margin="2 190 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElStomachColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElStomachColorSpot" Color="{Binding StomachColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -103,11 +115,11 @@
                         <TextBlock Text="Живот" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbStomach" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbStomach" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbStomach" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding StomachHp,StringFormat='{}{0}/70'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbStomach" Width="105" Height="15" Margin="0 2 0 0" Maximum="70" Value="{Binding StomachHp}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbStomachColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbStomachColorSpot" Color="{Binding StomachColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -118,7 +130,7 @@
                 <Ellipse x:Name="ElLeftHand" Width="15" Height="15" VerticalAlignment="Top" Margin="130 190 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElLeftHandColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElLeftHandColorSpot" Color="{Binding LeftHandColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -136,11 +148,11 @@
                         <TextBlock Text="Левая рука" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbLeftHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbLeftHand" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbLeftHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftHandHp,StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbLeftHand" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Value="{Binding LeftHandHp}" Maximum="60" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbLeftHandColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbLeftHandColorSpot" Color="{Binding LeftHandColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -151,7 +163,7 @@
                 <Ellipse x:Name="ElRightHand" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="118 190 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElRightHandColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElRightHandColorSpot" Color="{Binding RightHandColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -169,11 +181,11 @@
                         <TextBlock Text="Правая рука" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbRightHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbRightHand" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbRightHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightHandHp, StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbRightHand" Width="105" Height="15" Margin="0 2 0 0" Maximum="60" Value="{Binding RightHandHp}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbRightHandColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbRightHandColorSpot" Color="{Binding RightHandColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -184,7 +196,7 @@
                 <Ellipse x:Name="ElRightLeg" Width="15" Height="15" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="150 190 0 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElRightLegColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElRightLegColorSpot" Color="{Binding RightLegColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -202,11 +214,11 @@
                         <TextBlock Text="Правая нога" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbRightLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbRightLeg" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbRightLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightLegHp,StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbRightLeg" Width="105" Height="15" Background="Black" Value="{Binding RightLegHp}" Margin="0 2 0 0" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbRightLegColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbRightLegColorSpot" Color="{Binding RightLegColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -218,7 +230,7 @@
                 <Ellipse x:Name="ElLeftLeg" Width="15" Height="15" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 190 150 0">
                     <Ellipse.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop x:Name="ElLeftLegColorSpot" Color="#FF027902" Offset="0.033"/>
+                            <GradientStop x:Name="ElLeftLegColorSpot" Color="{Binding LeftLegColor}" Offset="0.033"/>
                             <GradientStop Color="#FF131615" Offset="1"/>
                         </LinearGradientBrush>
                     </Ellipse.Fill>
@@ -236,11 +248,11 @@
                         <TextBlock Text="Левая нога" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbLeftLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="35/35" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbLeftLeg" Width="105" Height="15" Margin="0 2 0 0" Maximum="35" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbLeftLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftLegHp, StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbLeftLeg" Width="105" Height="15" Margin="0 2 0 0" Value="{Binding LeftLegHp}"  Background="Black" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop x:Name="PbLeftLegColorSpot" Color="#FF027902" Offset="0.033"/>
+                                    <GradientStop x:Name="PbLeftLegColorSpot" Color="{Binding LeftLegColor}" Offset="0.033"/>
                                     <GradientStop Color="#FF131615" Offset="1"/>
                                 </LinearGradientBrush>
                             </ProgressBar.Foreground>
@@ -250,5 +262,7 @@
 
             </Grid>
         </Grid>
+
+
     </Grid>
 </Page>

@@ -5,6 +5,28 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище RealHealthBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BodyHealth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeadHp" Type="int" Nullable="false" />
+          <Property Name="TorsoHp" Type="int" Nullable="false" />
+          <Property Name="StomachHp" Type="int" Nullable="false" />
+          <Property Name="LeftHandHp" Type="int" Nullable="false" />
+          <Property Name="RightHandHp" Type="int" Nullable="false" />
+          <Property Name="LeftLegHp" Type="int" Nullable="false" />
+          <Property Name="RightLegHp" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BodyHealthEffect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BodyHealthId" Type="int" Nullable="false" />
+          <Property Name="EffectId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="CodeQuestion">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +46,16 @@
           <Property Name="Score" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="DateOfFill" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Effect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="MainIcon" Type="image" />
+          <Property Name="HealingMethodId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FormForDoctors">
           <Key>
@@ -45,6 +77,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HealingMethod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
@@ -88,6 +127,42 @@
           <Property Name="CodeQuestionId" Type="int" Nullable="false" />
           <Property Name="CodeAnswer" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BodyHealth_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="BodyHealth" Type="Self.BodyHealth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealth">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BodyHealthEffect_BodyHealth">
+          <End Role="BodyHealth" Type="Self.BodyHealth" Multiplicity="1" />
+          <End Role="BodyHealthEffect" Type="Self.BodyHealthEffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyHealth">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealthEffect">
+              <PropertyRef Name="BodyHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BodyHealthEffect_Effect">
+          <End Role="Effect" Type="Self.Effect" Multiplicity="1" />
+          <End Role="BodyHealthEffect" Type="Self.BodyHealthEffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Effect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealthEffect">
+              <PropertyRef Name="EffectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DailyHealth_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="DailyHealth" Type="Self.DailyHealth" Multiplicity="*" />
@@ -97,6 +172,18 @@
             </Principal>
             <Dependent Role="DailyHealth">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Effect_HealingMethod">
+          <End Role="HealingMethod" Type="Self.HealingMethod" Multiplicity="1" />
+          <End Role="Effect" Type="Self.Effect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealingMethod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Effect">
+              <PropertyRef Name="HealingMethodId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -161,17 +248,37 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище RealHealthBaseModelContainer">
+          <EntitySet Name="BodyHealth" EntityType="Self.BodyHealth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BodyHealthEffect" EntityType="Self.BodyHealthEffect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodeQuestion" EntityType="Self.CodeQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DailyHealth" EntityType="Self.DailyHealth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Effect" EntityType="Self.Effect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormForDoctors" EntityType="Self.FormForDoctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealingMethod" EntityType="Self.HealingMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalCard" EntityType="Self.MedicalCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BodyHealth_User" Association="Self.FK_BodyHealth_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="BodyHealth" EntitySet="BodyHealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BodyHealthEffect_BodyHealth" Association="Self.FK_BodyHealthEffect_BodyHealth">
+            <End Role="BodyHealth" EntitySet="BodyHealth" />
+            <End Role="BodyHealthEffect" EntitySet="BodyHealthEffect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BodyHealthEffect_Effect" Association="Self.FK_BodyHealthEffect_Effect">
+            <End Role="Effect" EntitySet="Effect" />
+            <End Role="BodyHealthEffect" EntitySet="BodyHealthEffect" />
+          </AssociationSet>
           <AssociationSet Name="FK_DailyHealth_User" Association="Self.FK_DailyHealth_User">
             <End Role="User" EntitySet="User" />
             <End Role="DailyHealth" EntitySet="DailyHealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Effect_HealingMethod" Association="Self.FK_Effect_HealingMethod">
+            <End Role="HealingMethod" EntitySet="HealingMethod" />
+            <End Role="Effect" EntitySet="Effect" />
           </AssociationSet>
           <AssociationSet Name="FK_FormForDoctors_User1" Association="Self.FK_FormForDoctors_User1">
             <End Role="User" EntitySet="User" />
@@ -199,14 +306,30 @@
     <edmx:ConceptualModels>
       <Schema Namespace="RealHealthBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RealHealthBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BodyHealth" EntityType="RealHealthBaseModel.BodyHealth" />
+          <EntitySet Name="BodyHealthEffect" EntityType="RealHealthBaseModel.BodyHealthEffect" />
           <EntitySet Name="CodeQuestion" EntityType="RealHealthBaseModel.CodeQuestion" />
           <EntitySet Name="DailyHealth" EntityType="RealHealthBaseModel.DailyHealth" />
+          <EntitySet Name="Effect" EntityType="RealHealthBaseModel.Effect" />
           <EntitySet Name="FormForDoctors" EntityType="RealHealthBaseModel.FormForDoctors" />
           <EntitySet Name="Gender" EntityType="RealHealthBaseModel.Gender" />
+          <EntitySet Name="HealingMethod" EntityType="RealHealthBaseModel.HealingMethod" />
           <EntitySet Name="MedicalCard" EntityType="RealHealthBaseModel.MedicalCard" />
           <EntitySet Name="Role" EntityType="RealHealthBaseModel.Role" />
           <EntitySet Name="sysdiagrams" EntityType="RealHealthBaseModel.sysdiagrams" />
           <EntitySet Name="User" EntityType="RealHealthBaseModel.User" />
+          <AssociationSet Name="FK_BodyHealth_User" Association="RealHealthBaseModel.FK_BodyHealth_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="BodyHealth" EntitySet="BodyHealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BodyHealthEffect_BodyHealth" Association="RealHealthBaseModel.FK_BodyHealthEffect_BodyHealth">
+            <End Role="BodyHealth" EntitySet="BodyHealth" />
+            <End Role="BodyHealthEffect" EntitySet="BodyHealthEffect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BodyHealthEffect_Effect" Association="RealHealthBaseModel.FK_BodyHealthEffect_Effect">
+            <End Role="Effect" EntitySet="Effect" />
+            <End Role="BodyHealthEffect" EntitySet="BodyHealthEffect" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_CodeQuestion" Association="RealHealthBaseModel.FK_User_CodeQuestion">
             <End Role="CodeQuestion" EntitySet="CodeQuestion" />
             <End Role="User" EntitySet="User" />
@@ -214,6 +337,10 @@
           <AssociationSet Name="FK_DailyHealth_User" Association="RealHealthBaseModel.FK_DailyHealth_User">
             <End Role="User" EntitySet="User" />
             <End Role="DailyHealth" EntitySet="DailyHealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Effect_HealingMethod" Association="RealHealthBaseModel.FK_Effect_HealingMethod">
+            <End Role="HealingMethod" EntitySet="HealingMethod" />
+            <End Role="Effect" EntitySet="Effect" />
           </AssociationSet>
           <AssociationSet Name="FK_FormForDoctors_User1" Association="RealHealthBaseModel.FK_FormForDoctors_User1">
             <End Role="User" EntitySet="User" />
@@ -232,6 +359,32 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BodyHealth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HeadHp" Type="Int32" Nullable="false" />
+          <Property Name="TorsoHp" Type="Int32" Nullable="false" />
+          <Property Name="StomachHp" Type="Int32" Nullable="false" />
+          <Property Name="LeftHandHp" Type="Int32" Nullable="false" />
+          <Property Name="RightHandHp" Type="Int32" Nullable="false" />
+          <Property Name="LeftLegHp" Type="Int32" Nullable="false" />
+          <Property Name="RightLegHp" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_BodyHealth_User" FromRole="BodyHealth" ToRole="User" />
+          <NavigationProperty Name="BodyHealthEffect" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_BodyHealth" FromRole="BodyHealth" ToRole="BodyHealthEffect" />
+        </EntityType>
+        <EntityType Name="BodyHealthEffect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BodyHealthId" Type="Int32" Nullable="false" />
+          <Property Name="EffectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BodyHealth" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_BodyHealth" FromRole="BodyHealthEffect" ToRole="BodyHealth" />
+          <NavigationProperty Name="Effect" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_Effect" FromRole="BodyHealthEffect" ToRole="Effect" />
+        </EntityType>
         <EntityType Name="CodeQuestion">
           <Key>
             <PropertyRef Name="Id" />
@@ -253,6 +406,18 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="DateOfFill" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_DailyHealth_User" FromRole="DailyHealth" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Effect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MainIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HealingMethodId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BodyHealthEffect" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_Effect" FromRole="Effect" ToRole="BodyHealthEffect" />
+          <NavigationProperty Name="HealingMethod" Relationship="RealHealthBaseModel.FK_Effect_HealingMethod" FromRole="Effect" ToRole="HealingMethod" />
         </EntityType>
         <EntityType Name="FormForDoctors">
           <Key>
@@ -276,6 +441,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MedicalCard" Relationship="RealHealthBaseModel.FK_MedicalCard_Gender" FromRole="Gender" ToRole="MedicalCard" />
+        </EntityType>
+        <EntityType Name="HealingMethod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Effect" Relationship="RealHealthBaseModel.FK_Effect_HealingMethod" FromRole="HealingMethod" ToRole="Effect" />
         </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
@@ -321,12 +494,49 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CodeQuestionId" Type="Int32" Nullable="false" />
           <Property Name="CodeAnswer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BodyHealth" Relationship="RealHealthBaseModel.FK_BodyHealth_User" FromRole="User" ToRole="BodyHealth" />
           <NavigationProperty Name="CodeQuestion" Relationship="RealHealthBaseModel.FK_User_CodeQuestion" FromRole="User" ToRole="CodeQuestion" />
           <NavigationProperty Name="DailyHealth" Relationship="RealHealthBaseModel.FK_DailyHealth_User" FromRole="User" ToRole="DailyHealth" />
           <NavigationProperty Name="FormForDoctors" Relationship="RealHealthBaseModel.FK_FormForDoctors_User1" FromRole="User" ToRole="FormForDoctors" />
           <NavigationProperty Name="MedicalCard" Relationship="RealHealthBaseModel.FK_MedicalCard_User" FromRole="User" ToRole="MedicalCard" />
           <NavigationProperty Name="Role" Relationship="RealHealthBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_BodyHealth_User">
+          <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.BodyHealth" Role="BodyHealth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealth">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BodyHealthEffect_BodyHealth">
+          <End Type="RealHealthBaseModel.BodyHealth" Role="BodyHealth" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.BodyHealthEffect" Role="BodyHealthEffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyHealth">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealthEffect">
+              <PropertyRef Name="BodyHealthId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BodyHealthEffect_Effect">
+          <End Type="RealHealthBaseModel.Effect" Role="Effect" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.BodyHealthEffect" Role="BodyHealthEffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Effect">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BodyHealthEffect">
+              <PropertyRef Name="EffectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_CodeQuestion">
           <End Type="RealHealthBaseModel.CodeQuestion" Role="CodeQuestion" Multiplicity="1" />
           <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="*" />
@@ -348,6 +558,18 @@
             </Principal>
             <Dependent Role="DailyHealth">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Effect_HealingMethod">
+          <End Type="RealHealthBaseModel.HealingMethod" Role="HealingMethod" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.Effect" Role="Effect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealingMethod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Effect">
+              <PropertyRef Name="HealingMethodId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -399,12 +621,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище RealHealthBaseModelContainer" CdmEntityContainer="RealHealthBaseEntities">
+          <EntitySetMapping Name="BodyHealth">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.BodyHealth">
+              <MappingFragment StoreEntitySet="BodyHealth">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RightLegHp" ColumnName="RightLegHp" />
+                <ScalarProperty Name="LeftLegHp" ColumnName="LeftLegHp" />
+                <ScalarProperty Name="RightHandHp" ColumnName="RightHandHp" />
+                <ScalarProperty Name="LeftHandHp" ColumnName="LeftHandHp" />
+                <ScalarProperty Name="StomachHp" ColumnName="StomachHp" />
+                <ScalarProperty Name="TorsoHp" ColumnName="TorsoHp" />
+                <ScalarProperty Name="HeadHp" ColumnName="HeadHp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BodyHealthEffect">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.BodyHealthEffect">
+              <MappingFragment StoreEntitySet="BodyHealthEffect">
+                <ScalarProperty Name="EffectId" ColumnName="EffectId" />
+                <ScalarProperty Name="BodyHealthId" ColumnName="BodyHealthId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CodeQuestion">
             <EntityTypeMapping TypeName="RealHealthBaseModel.CodeQuestion">
               <MappingFragment StoreEntitySet="CodeQuestion">
@@ -427,6 +673,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Effect">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.Effect">
+              <MappingFragment StoreEntitySet="Effect">
+                <ScalarProperty Name="HealingMethodId" ColumnName="HealingMethodId" />
+                <ScalarProperty Name="MainIcon" ColumnName="MainIcon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FormForDoctors">
             <EntityTypeMapping TypeName="RealHealthBaseModel.FormForDoctors">
               <MappingFragment StoreEntitySet="FormForDoctors">
@@ -445,6 +702,14 @@
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="RealHealthBaseModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealingMethod">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.HealingMethod">
+              <MappingFragment StoreEntitySet="HealingMethod">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

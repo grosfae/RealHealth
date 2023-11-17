@@ -72,10 +72,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\BodyHealth.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BodyHealthEffect.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\CodeQuestion.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\DailyHealth.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Effect.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\FormForDoctors.cs">
@@ -84,9 +93,13 @@
     <Compile Include="Components\Gender.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\HealingMethod.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\MedicalCard.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\PartialClasses\BodyHealth.cs" />
     <Compile Include="Components\RealHealthModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,6 +144,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PatientCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +169,9 @@
     </Compile>
     <Compile Include="Pages\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PatientCard.xaml.cs">
+      <DependentUpon>PatientCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
@@ -212,6 +232,8 @@
       <DependentUpon>RealHealthModel.edmx</DependentUpon>
       <LastGenOutput>RealHealthModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\HealthIcon.png" />
+    <Resource Include="Resources\Frame 47.png" />
     <Resource Include="Resources\Human.png" />
   </ItemGroup>
   <ItemGroup>
