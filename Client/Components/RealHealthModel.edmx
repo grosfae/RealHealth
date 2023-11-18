@@ -56,6 +56,13 @@
           <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="MainIcon" Type="image" />
           <Property Name="HealingMethodId" Type="int" Nullable="false" />
+          <Property Name="HeadHpDecrease" Type="int" Nullable="false" />
+          <Property Name="TorsoHpDecrease" Type="int" Nullable="false" />
+          <Property Name="StomachHpDecrease" Type="int" Nullable="false" />
+          <Property Name="LeftHandHpDecrease" Type="int" Nullable="false" />
+          <Property Name="RightHandHpDecrease" Type="int" Nullable="false" />
+          <Property Name="LeftLegHpDecrease" Type="int" Nullable="false" />
+          <Property Name="RightLegHpDecrease" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FormForDoctors">
           <Key>
@@ -416,6 +423,13 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="MainIcon" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="HealingMethodId" Type="Int32" Nullable="false" />
+          <Property Name="HeadHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="TorsoHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="StomachHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="LeftHandHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="RightHandHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="LeftLegHpDecrease" Type="Int32" Nullable="false" />
+          <Property Name="RightLegHpDecrease" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BodyHealthEffect" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_Effect" FromRole="Effect" ToRole="BodyHealthEffect" />
           <NavigationProperty Name="HealingMethod" Relationship="RealHealthBaseModel.FK_Effect_HealingMethod" FromRole="Effect" ToRole="HealingMethod" />
         </EntityType>
@@ -676,6 +690,13 @@
           <EntitySetMapping Name="Effect">
             <EntityTypeMapping TypeName="RealHealthBaseModel.Effect">
               <MappingFragment StoreEntitySet="Effect">
+                <ScalarProperty Name="RightLegHpDecrease" ColumnName="RightLegHpDecrease" />
+                <ScalarProperty Name="LeftLegHpDecrease" ColumnName="LeftLegHpDecrease" />
+                <ScalarProperty Name="RightHandHpDecrease" ColumnName="RightHandHpDecrease" />
+                <ScalarProperty Name="LeftHandHpDecrease" ColumnName="LeftHandHpDecrease" />
+                <ScalarProperty Name="StomachHpDecrease" ColumnName="StomachHpDecrease" />
+                <ScalarProperty Name="TorsoHpDecrease" ColumnName="TorsoHpDecrease" />
+                <ScalarProperty Name="HeadHpDecrease" ColumnName="HeadHpDecrease" />
                 <ScalarProperty Name="HealingMethodId" ColumnName="HealingMethodId" />
                 <ScalarProperty Name="MainIcon" ColumnName="MainIcon" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

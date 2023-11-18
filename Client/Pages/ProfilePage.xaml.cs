@@ -1,4 +1,5 @@
 ﻿using Client.Components;
+using Client.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,32 @@ namespace Client.Pages
             InitializeComponent();
             contextBody = bodyHealth;
             DataContext = contextBody;
+            LvEffects.ItemsSource = App.LoggedUser.BodyHealth.FirstOrDefault().BodyHealthEffect.ToList();
+
         }
 
+        private void EffectAddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EffectAddWindow effectWindow = new EffectAddWindow();
+            effectWindow.ShowDialog();
+            DataContext = null;
+            DataContext = contextBody;
+            LvEffects.ItemsSource = App.LoggedUser.BodyHealth.FirstOrDefault().BodyHealthEffect.ToList();
+        }
+
+        private void RemoveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (sender as Button).DataContext as BodyHealthEffect;
+            if (selectedItem == null)
+            {
+                return;
+            }
+            App.DB.BodyHealthEffect.Remove(selectedItem);
+            App.DB.SaveChanges();
+            LvEffects.ItemsSource = App.LoggedUser.BodyHealth.FirstOrDefault().BodyHealthEffect.ToList();
+            DataContext = null;
+            DataContext = contextBody;
+        }
 
     }
 }

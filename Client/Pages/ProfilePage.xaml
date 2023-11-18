@@ -49,8 +49,8 @@
                         <TextBlock Text="Голова" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbHead" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding HeadHp, StringFormat='{}{0}/35'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbHead" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Maximum="35" BorderThickness="0" Value="{Binding HeadHp}" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbHead" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding HeadEffectsHp,Mode=OneWay, StringFormat='{}{0}/35'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbHead" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Maximum="35" BorderThickness="0" Value="{Binding HeadEffectsHp,Mode=OneWay}" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbHeadColorSpot" Color="{Binding HeadColor}" Offset="0.033"/>
@@ -82,8 +82,8 @@
                         <TextBlock Text="Грудная клетка" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbTorso" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding TorsoHp, StringFormat='{}{0}/85'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbTorso" Width="105" Height="15" Margin="0 2 0 0" Maximum="85" Value="{Binding TorsoHp}"  Background="Black" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbTorso" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding TorsoEffectsHp,Mode=OneWay, StringFormat='{}{0}/85'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbTorso" Width="105" Height="15" Margin="0 2 0 0" Maximum="85" Value="{Binding TorsoEffectsHp,Mode=OneWay}"  Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbTorsoColorSpot" Color="{Binding TorsoColor}" Offset="0.033"/>
@@ -115,8 +115,8 @@
                         <TextBlock Text="Живот" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbStomach" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding StomachHp,StringFormat='{}{0}/70'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbStomach" Width="105" Height="15" Margin="0 2 0 0" Maximum="70" Value="{Binding StomachHp}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbStomach" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding StomachEffectsHp,Mode=OneWay,StringFormat='{}{0}/70'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbStomach" Width="105" Height="15" Margin="0 2 0 0" Maximum="70" Value="{Binding StomachEffectsHp, Mode=OneWay}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbStomachColorSpot" Color="{Binding StomachColor}" Offset="0.033"/>
@@ -148,8 +148,8 @@
                         <TextBlock Text="Левая рука" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbLeftHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftHandHp,StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbLeftHand" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Value="{Binding LeftHandHp}" Maximum="60" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbLeftHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftHandEffectsHp,Mode=OneWay,StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbLeftHand" Width="105" Height="15" Background="Black" Margin="0 2 0 0" Value="{Binding LeftHandEffectsHp,Mode=OneWay}" Maximum="60" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbLeftHandColorSpot" Color="{Binding LeftHandColor}" Offset="0.033"/>
@@ -181,8 +181,8 @@
                         <TextBlock Text="Правая рука" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbRightHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightHandHp, StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbRightHand" Width="105" Height="15" Margin="0 2 0 0" Maximum="60" Value="{Binding RightHandHp}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbRightHand" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightHandEffectsHp,Mode=OneWay, StringFormat='{}{0}/60'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbRightHand" Width="105" Height="15" Margin="0 2 0 0" Maximum="60" Value="{Binding RightHandEffectsHp,Mode=OneWay}" Background="Black" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbRightHandColorSpot" Color="{Binding RightHandColor}" Offset="0.033"/>
@@ -214,8 +214,8 @@
                         <TextBlock Text="Правая нога" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbRightLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightLegHp,StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbRightLeg" Width="105" Height="15" Background="Black" Value="{Binding RightLegHp}" Margin="0 2 0 0" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbRightLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding RightLegEffectsHp,Mode=OneWay,StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbRightLeg" Width="105" Height="15" Background="Black" Value="{Binding RightLegEffectsHp,Mode=OneWay}" Margin="0 2 0 0" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbRightLegColorSpot" Color="{Binding RightLegColor}" Offset="0.033"/>
@@ -248,8 +248,8 @@
                         <TextBlock Text="Левая нога" Style="{StaticResource SecondText}" Foreground="White" Width="100" FontSize="10" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid Background="#FF121212" Height="20">
-                        <TextBlock x:Name="TbLeftLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftLegHp, StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
-                        <ProgressBar x:Name="PbLeftLeg" Width="105" Height="15" Margin="0 2 0 0" Value="{Binding LeftLegHp}"  Background="Black" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
+                        <TextBlock x:Name="TbLeftLeg" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Style="{StaticResource SecondText}" Text="{Binding LeftLegEffectsHp,Mode=OneWay, StringFormat='{}{0}/65'}" Panel.ZIndex="1" FontSize="9"/>
+                        <ProgressBar x:Name="PbLeftLeg" Width="105" Height="15" Margin="0 2 0 0" Value="{Binding LeftLegEffectsHp,Mode=OneWay}"  Background="Black" Maximum="65" BorderThickness="0" BorderBrush="Transparent">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop x:Name="PbLeftLegColorSpot" Color="{Binding LeftLegColor}" Offset="0.033"/>
@@ -263,6 +263,53 @@
             </Grid>
         </Grid>
 
+        <Grid Grid.Column="0" Margin="10 10 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Оценка состояния:" FontSize="20"  HorizontalAlignment="Left" Foreground="#FF00965C"  Style="{StaticResource SecondText}" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding HealthStatus}" FontSize="20"  HorizontalAlignment="Left"  Style="{StaticResource SecondText}" VerticalAlignment="Top" Margin="5 0 0 0">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{Binding GeneralColor}" Offset="0.033"/>
+                            <GradientStop Color="#FF131615" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="0 10 0 0">
+                <TextBlock Text="Текущие эффекты" FontSize="18"  HorizontalAlignment="Left" Foreground="#FFB30707"  Style="{StaticResource SecondText}" VerticalAlignment="Top"/>
+                <ListView x:Name="LvEffects" d:ItemsSource="{d:SampleData ItemCount=5}" Height="370">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" ToolTip="{Binding Effect.Description}">
+                                <Image Height="90" Width="90" Source="{Binding MainIcon}"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Effect.Name}" FontSize="18" Width="480" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="#FF00965C"  Style="{StaticResource SecondText}" VerticalAlignment="Top"/>
+                                    <StackPanel  Grid.Row="1" Margin="0 5 0 0">
+                                        <TextBlock Text="{Binding Effect.HealingMethod.Name, StringFormat='Способ лечения: {0}'}" FontSize="16" Width="480" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="#FF6F6F6F" Style="{StaticResource SecondText}" VerticalAlignment="Top"/>
+                                        <TextBlock Text="{Binding Effect.HealingMethod.Description}" FontSize="14" Width="480" TextWrapping="Wrap" HorizontalAlignment="Left" Foreground="#FF6F6F6F" Style="{StaticResource SecondText}" VerticalAlignment="Top"/>
+
+                                    </StackPanel>
+                                    <Button x:Name="RemoveBtn" Style="{StaticResource DefaltRedBtn}" Content="Вылечить" Width="120" Height="20" HorizontalAlignment="Left" FontSize="13" Grid.Row="2" VerticalAlignment="Bottom" Click="RemoveBtn_Click" Cursor="Hand"/>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            
+            <Button x:Name="EffectAddBtn" Style="{StaticResource DefaltBtn}" Content="Добавить эффект" FontSize="20" Width="300" Height="50" VerticalAlignment="Bottom" Margin="0 0 0 10" Grid.Row="2" Cursor="Hand" Click="EffectAddBtn_Click"/>
+        </Grid>
 
     </Grid>
 </Page>

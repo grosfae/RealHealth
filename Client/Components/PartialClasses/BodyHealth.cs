@@ -12,15 +12,15 @@ namespace Client.Components
         {
             get
             {
-                if(HeadHp == 0)
+                if(HeadEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (HeadHp <= 15 && HeadHp > 0)
+                if (HeadEffectsHp <= 15 && HeadEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (HeadHp <= 25 && HeadHp > 15)
+                if (HeadEffectsHp <= 25 && HeadEffectsHp > 15)
                 {
                     return "#FFFFD200";
                 }
@@ -35,15 +35,15 @@ namespace Client.Components
         {
             get
             {
-                if (TorsoHp == 0)
+                if (TorsoEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (TorsoHp <= 35 && TorsoHp > 0)
+                if (TorsoEffectsHp <= 35 && TorsoEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (TorsoHp <= 60 && TorsoHp > 35)
+                if (TorsoEffectsHp <= 60 && TorsoEffectsHp > 35)
                 {
                     return "#FFFFD200";
                 }
@@ -59,15 +59,15 @@ namespace Client.Components
         {
             get
             {
-                if (StomachHp == 0)
+                if (StomachEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (StomachHp <= 35 && StomachHp > 0)
+                if (StomachEffectsHp <= 35 && StomachEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (StomachHp <= 55 && StomachHp > 35)
+                if (StomachEffectsHp <= 55 && StomachEffectsHp > 35)
                 {
                     return "#FFFFD200";
                 }
@@ -78,43 +78,43 @@ namespace Client.Components
 
             }
         }
-        public string LeftHandColor
-        {
-            get
-            {
-                if (LeftHandHp == 0)
-                {
-                    return "#FF131615";
-                }
-                if (LeftHandHp <= 20 && LeftHandHp > 0)
-                {
-                    return "#FFFF0D0D";
-                }
-                if (LeftHandHp <= 40 && LeftHandHp > 20)
-                {
-                    return "#FFFFD200";
-                }
-                else
-                {
-                    return "#FF027902";
-                }
-
-            }
-        }
-
         public string RightHandColor
         {
             get
             {
-                if (RightHandHp == 0)
+                if (RightHandEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (RightHandHp <= 20 && RightHandHp > 0)
+                if (RightHandEffectsHp <= 20 && RightHandEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (RightHandHp <= 40 && RightHandHp > 20)
+                if (RightHandEffectsHp <= 40 && RightHandEffectsHp > 20)
+                {
+                    return "#FFFFD200";
+                }
+                else
+                {
+                    return "#FF027902";
+                }
+
+            }
+        }
+
+        public string LeftHandColor
+        {
+            get
+            {
+                if (LeftHandEffectsHp == 0)
+                {
+                    return "#FF131615";
+                }
+                if (LeftHandEffectsHp <= 20 && LeftHandEffectsHp > 0)
+                {
+                    return "#FFFF0D0D";
+                }
+                if (LeftHandEffectsHp <= 40 && LeftHandEffectsHp > 20)
                 {
                     return "#FFFFD200";
                 }
@@ -129,15 +129,15 @@ namespace Client.Components
         {
             get
             {
-                if (RightLegHp == 0)
+                if (RightLegEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (RightLegHp <= 20 && RightLegHp > 0)
+                if (RightLegEffectsHp <= 20 && RightLegEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (RightLegHp <= 40 && RightLegHp > 20)
+                if (RightLegEffectsHp <= 40 && RightLegEffectsHp > 20)
                 {
                     return "#FFFFD200";
                 }
@@ -153,15 +153,15 @@ namespace Client.Components
         {
             get
             {
-                if (LeftLegHp == 0)
+                if (LeftLegEffectsHp == 0)
                 {
                     return "#FF131615";
                 }
-                if (LeftLegHp <= 20 && LeftLegHp > 0)
+                if (LeftLegEffectsHp <= 20 && LeftLegEffectsHp > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (LeftLegHp <= 40 && LeftLegHp > 20)
+                if (LeftLegEffectsHp <= 40 && LeftLegEffectsHp > 20)
                 {
                     return "#FFFFD200";
                 }
@@ -177,30 +177,142 @@ namespace Client.Components
         {
             get
             {
-                return HeadHp + TorsoHp + StomachHp + RightHandHp + LeftHandHp + RightLegHp + LeftLegHp;
+                return HeadEffectsHp + TorsoEffectsHp + StomachEffectsHp + RightHandEffectsHp + LeftHandEffectsHp + RightLegEffectsHp + LeftLegEffectsHp;
             }
         }
         public string GeneralColor
         {
             get
             {
-                if (HeadHp == 0)
+                if (GeneralHealth == 0)
                 {
                     return "#FF131615";
                 }
-                if (HeadHp <= 150 && HeadHp > 0)
+                if (GeneralHealth <= 150 && GeneralHealth > 0)
                 {
                     return "#FFFF0D0D";
                 }
-                if (HeadHp <= 300 && HeadHp > 150)
+                if (GeneralHealth <= 300 && GeneralHealth > 150)
                 {
                     return "#FFFFD200";
                 }
                 else
                 {
-                    return "#FF027902";
+                    return "#FF30CA10";
                 }
 
+            }
+        }
+
+        public int HeadEffectsHp
+        {
+            get
+            {
+                int head = HeadHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    head -= effect.Effect.HeadHpDecrease;
+                }
+                return head;
+            }
+        }
+        public int TorsoEffectsHp
+        {
+            get
+            {
+                int torso = TorsoHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    torso -= effect.Effect.TorsoHpDecrease;
+                }
+                return torso;
+            }
+        }
+        public int StomachEffectsHp
+        {
+            get
+            {
+                int stomach = StomachHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    stomach -= effect.Effect.StomachHpDecrease;       
+                }
+                return stomach;
+            }
+        }
+
+        public int LeftHandEffectsHp
+        {
+            get
+            {
+                int leftHand = LeftHandHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    leftHand -= effect.Effect.LeftHandHpDecrease;
+                }
+                return leftHand;
+            }
+        }
+
+        public int RightHandEffectsHp
+        {
+            get
+            {
+                int rightHand = RightHandHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    rightHand -= effect.Effect.RightHandHpDecrease;
+                }
+                return rightHand;
+            }
+        }
+
+        public int RightLegEffectsHp
+        {
+            get
+            {
+                int rightLeg = RightLegHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    rightLeg -= effect.Effect.RightHandHpDecrease;
+                }
+                return rightLeg;
+            }
+        }
+
+        public int LeftLegEffectsHp
+        {
+            get
+            {
+                int leftLeg = LeftLegHp;
+                foreach (var effect in BodyHealthEffect)
+                {
+                    leftLeg -= effect.Effect.LeftLegHpDecrease;
+                }
+                return leftLeg;
+            }
+        }
+
+        public string HealthStatus
+        {
+            get
+            {
+                if (GeneralHealth == 0)
+                {
+                    return "Вызовите скорую";
+                }
+                if (GeneralHealth <= 150 && GeneralHealth > 0)
+                {
+                    return "Срочно обратитесь к доктору";
+                }
+                if (GeneralHealth <= 300 && GeneralHealth > 150)
+                {
+                    return "Примите рекомендации лечения";
+                }
+                else
+                {
+                    return "Нормально";
+                }
             }
         }
     }

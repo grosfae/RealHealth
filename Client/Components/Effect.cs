@@ -25,6 +25,13 @@ namespace Client.Components
         public string Description { get; set; }
         public byte[] MainIcon { get; set; }
         public int HealingMethodId { get; set; }
+        public int HeadHpDecrease { get; set; }
+        public int TorsoHpDecrease { get; set; }
+        public int StomachHpDecrease { get; set; }
+        public int LeftHandHpDecrease { get; set; }
+        public int RightHandHpDecrease { get; set; }
+        public int LeftLegHpDecrease { get; set; }
+        public int RightLegHpDecrease { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BodyHealthEffect> BodyHealthEffect { get; set; }
