@@ -77,6 +77,17 @@ namespace Client.Pages
             {
                 contextMedicalCard.UserId = App.LoggedUser.Id;
                 App.DB.MedicalCard.Add(contextMedicalCard);
+                App.DB.BodyHealth.Add(new BodyHealth
+                {
+                    HeadHp = 35,
+                    TorsoHp = 85,
+                    StomachHp = 70,
+                    LeftHandHp = 60,
+                    RightHandHp = 60,
+                    LeftLegHp = 65,
+                    RightLegHp = 65,
+                    UserId = App.LoggedUser.Id
+                });
             }
             App.DB.SaveChanges();
             NavigationService.GoBack();

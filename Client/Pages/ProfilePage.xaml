@@ -308,7 +308,7 @@
                 </ListView>
             </StackPanel>
             
-            <Button x:Name="EffectAddBtn" Style="{StaticResource DefaltBtn}" Content="Добавить эффект" FontSize="20" Width="300" Height="50" VerticalAlignment="Bottom" Margin="0 0 0 10" Grid.Row="2" Cursor="Hand" Click="EffectAddBtn_Click"/>
+            <Button x:Name="EffectAddBtn" Style="{StaticResource DefaltBtn}" Content="Добавить симптом" FontSize="20" Width="300" Height="50" VerticalAlignment="Bottom" Margin="0 0 0 10" Grid.Row="2" Cursor="Hand" Click="EffectAddBtn_Click"/>
         </Grid>
 
     </Grid>

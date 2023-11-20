@@ -64,6 +64,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\MedicalAnswer.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MedicalQuestion.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MedicalScore.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MedicalTest.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PartialClasses\MedicalScore.cs" />
+    <Compile Include="Components\UserMedicalTest.cs">
+      <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MedicalTestView.xaml.cs">
+      <DependentUpon>MedicalTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\EffectAddWindow.xaml.cs">
       <DependentUpon>EffectAddWindow.xaml</DependentUpon>
     </Compile>
@@ -84,13 +103,7 @@
     <Compile Include="Components\CodeQuestion.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\DailyHealth.cs">
-      <DependentUpon>RealHealthModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\Effect.cs">
-      <DependentUpon>RealHealthModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\FormForDoctors.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\Gender.cs">
@@ -140,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MedicalCardFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MedicalTestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,29 +12,23 @@ namespace Client.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class MedicalTest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public MedicalTest()
         {
-            this.BodyHealth = new HashSet<BodyHealth>();
-            this.MedicalCard = new HashSet<MedicalCard>();
+            this.MedicalQuestion = new HashSet<MedicalQuestion>();
+            this.MedicalScore = new HashSet<MedicalScore>();
             this.UserMedicalTest = new HashSet<UserMedicalTest>();
         }
     
         public int Id { get; set; }
-        public int RoleId { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int CodeQuestionId { get; set; }
-        public string CodeAnswer { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BodyHealth> BodyHealth { get; set; }
-        public virtual CodeQuestion CodeQuestion { get; set; }
+        public virtual ICollection<MedicalQuestion> MedicalQuestion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MedicalCard> MedicalCard { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual ICollection<MedicalScore> MedicalScore { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserMedicalTest> UserMedicalTest { get; set; }
     }

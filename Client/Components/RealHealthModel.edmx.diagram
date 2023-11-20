@@ -4,29 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="80e2e9a0e63f44b094c33d3d6459d174" Name="Diagram1">
-        <EntityTypeShape EntityType="RealHealthBaseModel.BodyHealth" Width="1.5" PointX="5.25" PointY="11" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.BodyHealthEffect" Width="1.5" PointX="7.5" PointY="11.625" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.CodeQuestion" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.DailyHealth" Width="1.5" PointX="5.25" PointY="14.875" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.Effect" Width="1.5" PointX="5.25" PointY="18.75" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.FormForDoctors" Width="1.5" PointX="5.25" PointY="7.375" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.Gender" Width="1.5" PointX="6" PointY="4.75" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.HealingMethod" Width="1.5" PointX="3" PointY="19.875" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalCard" Width="1.5" PointX="8.25" PointY="7" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.Role" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RealHealthBaseModel.User" Width="1.5" PointX="3" PointY="6.875" />
+      <Diagram DiagramId="80e2e9a0e63f44b094c33d3d6459d174" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="RealHealthBaseModel.BodyHealth" Width="1.5" PointX="13.25" PointY="7" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.BodyHealthEffect" Width="1.5" PointX="14.875" PointY="6.875" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.CodeQuestion" Width="1.5" PointX="8.375" PointY="2.75" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.Effect" Width="1.5" PointX="11.625" PointY="7.875" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.Gender" Width="1.5" PointX="10" PointY="2.875" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.HealingMethod" Width="1.5" PointX="10" PointY="7.875" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalAnswer" Width="1.5" PointX="14.875" PointY="2.5" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalCard" Width="1.5" PointX="11.625" PointY="4.625" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalQuestion" Width="1.5" PointX="13.25" PointY="2.5" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalScore" Width="1.5" PointX="14.875" PointY="4.625" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.MedicalTest" Width="1.5" PointX="11.625" PointY="2.5" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.Role" Width="1.5" PointX="8.375" PointY="4.625" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="6.375" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.User" Width="1.5" PointX="10" PointY="4.625" />
+        <EntityTypeShape EntityType="RealHealthBaseModel.UserMedicalTest" Width="1.5" PointX="13.25" PointY="4.625" />
         <AssociationConnector Association="RealHealthBaseModel.FK_BodyHealth_User" />
         <AssociationConnector Association="RealHealthBaseModel.FK_BodyHealthEffect_BodyHealth" />
         <AssociationConnector Association="RealHealthBaseModel.FK_BodyHealthEffect_Effect" />
         <AssociationConnector Association="RealHealthBaseModel.FK_User_CodeQuestion" />
-        <AssociationConnector Association="RealHealthBaseModel.FK_DailyHealth_User" />
         <AssociationConnector Association="RealHealthBaseModel.FK_Effect_HealingMethod" />
-        <AssociationConnector Association="RealHealthBaseModel.FK_FormForDoctors_User1" />
         <AssociationConnector Association="RealHealthBaseModel.FK_MedicalCard_Gender" />
+        <AssociationConnector Association="RealHealthBaseModel.FK_MedicalAnswer_MedicalQuestion" />
         <AssociationConnector Association="RealHealthBaseModel.FK_MedicalCard_User" />
+        <AssociationConnector Association="RealHealthBaseModel.FK_MedicalQuestion_MedicalTest" />
+        <AssociationConnector Association="RealHealthBaseModel.FK_MedicalScore_MedicalTest" />
+        <AssociationConnector Association="RealHealthBaseModel.FK_UserMedicalTest_MedicalTest" />
         <AssociationConnector Association="RealHealthBaseModel.FK_User_Role" />
+        <AssociationConnector Association="RealHealthBaseModel.FK_UserMedicalTest_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

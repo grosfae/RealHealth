@@ -12,18 +12,14 @@ namespace Client.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class FormForDoctors
+    public partial class UserMedicalTest
     {
         public int Id { get; set; }
-        public System.DateTime DateOfFill { get; set; }
-        public bool Neurologist { get; set; }
-        public bool Rheumatologist { get; set; }
-        public bool Otolaryngologist { get; set; }
-        public bool Gastroenterologist { get; set; }
-        public bool Allergist { get; set; }
-        public bool FullInspection { get; set; }
         public int UserId { get; set; }
+        public int MedicalTestId { get; set; }
+        public System.DateTime CompleteDate { get; set; }
     
+        public virtual MedicalTest MedicalTest { get; set; }
         public virtual User User { get; set; }
     }
 }

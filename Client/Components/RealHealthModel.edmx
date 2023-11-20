@@ -35,18 +35,6 @@
           <Property Name="Name" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="IsCustom" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="DailyHealth">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HeartSystemReaction" Type="real" Nullable="false" />
-          <Property Name="IndexOfMass" Type="real" Nullable="false" />
-          <Property Name="BreathHoldingDuration" Type="int" Nullable="false" />
-          <Property Name="Score" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="DateOfFill" Type="date" Nullable="false" />
-        </EntityType>
         <EntityType Name="Effect">
           <Key>
             <PropertyRef Name="Id" />
@@ -64,20 +52,6 @@
           <Property Name="LeftLegHpDecrease" Type="int" Nullable="false" />
           <Property Name="RightLegHpDecrease" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="FormForDoctors">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateOfFill" Type="date" Nullable="false" />
-          <Property Name="Neurologist" Type="bit" Nullable="false" />
-          <Property Name="Rheumatologist" Type="bit" Nullable="false" />
-          <Property Name="Otolaryngologist" Type="bit" Nullable="false" />
-          <Property Name="Gastroenterologist" Type="bit" Nullable="false" />
-          <Property Name="Allergist" Type="bit" Nullable="false" />
-          <Property Name="FullInspection" Type="bit" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,6 +66,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="MedicalAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="MedicalQuestionId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
             <PropertyRef Name="Id" />
@@ -105,6 +88,31 @@
           <Property Name="Weight" Type="real" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="GenderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="MedicalTestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MinScore" Type="int" Nullable="false" />
+          <Property Name="MaxScore" Type="int" Nullable="false" />
+          <Property Name="MedicalTestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -133,6 +141,15 @@
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CodeQuestionId" Type="int" Nullable="false" />
           <Property Name="CodeAnswer" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserMedicalTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MedicalTestId" Type="int" Nullable="false" />
+          <Property Name="CompleteDate" Type="date" Nullable="false" />
         </EntityType>
         <Association Name="FK_BodyHealth_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -170,18 +187,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DailyHealth_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="DailyHealth" Type="Self.DailyHealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DailyHealth">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Effect_HealingMethod">
           <End Role="HealingMethod" Type="Self.HealingMethod" Multiplicity="1" />
           <End Role="Effect" Type="Self.Effect" Multiplicity="*" />
@@ -194,15 +199,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FormForDoctors_User1">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="FormForDoctors" Type="Self.FormForDoctors" Multiplicity="*" />
+        <Association Name="FK_MedicalAnswer_MedicalQuestion">
+          <End Role="MedicalQuestion" Type="Self.MedicalQuestion" Multiplicity="1" />
+          <End Role="MedicalAnswer" Type="Self.MedicalAnswer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="MedicalQuestion">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="FormForDoctors">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="MedicalAnswer">
+              <PropertyRef Name="MedicalQuestionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -230,6 +235,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MedicalQuestion_MedicalTest">
+          <End Role="MedicalTest" Type="Self.MedicalTest" Multiplicity="1" />
+          <End Role="MedicalQuestion" Type="Self.MedicalQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalQuestion">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalScore_MedicalTest">
+          <End Role="MedicalTest" Type="Self.MedicalTest" Multiplicity="1" />
+          <End Role="MedicalScore" Type="Self.MedicalScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalScore">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_CodeQuestion">
           <End Role="CodeQuestion" Type="Self.CodeQuestion" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -254,19 +283,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserMedicalTest_MedicalTest">
+          <End Role="MedicalTest" Type="Self.MedicalTest" Multiplicity="1" />
+          <End Role="UserMedicalTest" Type="Self.UserMedicalTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMedicalTest">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMedicalTest_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserMedicalTest" Type="Self.UserMedicalTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMedicalTest">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище RealHealthBaseModelContainer">
           <EntitySet Name="BodyHealth" EntityType="Self.BodyHealth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BodyHealthEffect" EntityType="Self.BodyHealthEffect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodeQuestion" EntityType="Self.CodeQuestion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DailyHealth" EntityType="Self.DailyHealth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Effect" EntityType="Self.Effect" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FormForDoctors" EntityType="Self.FormForDoctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealingMethod" EntityType="Self.HealingMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalAnswer" EntityType="Self.MedicalAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalCard" EntityType="Self.MedicalCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalQuestion" EntityType="Self.MedicalQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalScore" EntityType="Self.MedicalScore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalTest" EntityType="Self.MedicalTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMedicalTest" EntityType="Self.UserMedicalTest" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BodyHealth_User" Association="Self.FK_BodyHealth_User">
             <End Role="User" EntitySet="User" />
             <End Role="BodyHealth" EntitySet="BodyHealth" />
@@ -279,17 +335,13 @@
             <End Role="Effect" EntitySet="Effect" />
             <End Role="BodyHealthEffect" EntitySet="BodyHealthEffect" />
           </AssociationSet>
-          <AssociationSet Name="FK_DailyHealth_User" Association="Self.FK_DailyHealth_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="DailyHealth" EntitySet="DailyHealth" />
-          </AssociationSet>
           <AssociationSet Name="FK_Effect_HealingMethod" Association="Self.FK_Effect_HealingMethod">
             <End Role="HealingMethod" EntitySet="HealingMethod" />
             <End Role="Effect" EntitySet="Effect" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormForDoctors_User1" Association="Self.FK_FormForDoctors_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="FormForDoctors" EntitySet="FormForDoctors" />
+          <AssociationSet Name="FK_MedicalAnswer_MedicalQuestion" Association="Self.FK_MedicalAnswer_MedicalQuestion">
+            <End Role="MedicalQuestion" EntitySet="MedicalQuestion" />
+            <End Role="MedicalAnswer" EntitySet="MedicalAnswer" />
           </AssociationSet>
           <AssociationSet Name="FK_MedicalCard_Gender" Association="Self.FK_MedicalCard_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -299,6 +351,14 @@
             <End Role="User" EntitySet="User" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
           </AssociationSet>
+          <AssociationSet Name="FK_MedicalQuestion_MedicalTest" Association="Self.FK_MedicalQuestion_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="MedicalQuestion" EntitySet="MedicalQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalScore_MedicalTest" Association="Self.FK_MedicalScore_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="MedicalScore" EntitySet="MedicalScore" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_CodeQuestion" Association="Self.FK_User_CodeQuestion">
             <End Role="CodeQuestion" EntitySet="CodeQuestion" />
             <End Role="User" EntitySet="User" />
@@ -306,6 +366,14 @@
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMedicalTest_MedicalTest" Association="Self.FK_UserMedicalTest_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="UserMedicalTest" EntitySet="UserMedicalTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMedicalTest_User" Association="Self.FK_UserMedicalTest_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserMedicalTest" EntitySet="UserMedicalTest" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -316,15 +384,18 @@
           <EntitySet Name="BodyHealth" EntityType="RealHealthBaseModel.BodyHealth" />
           <EntitySet Name="BodyHealthEffect" EntityType="RealHealthBaseModel.BodyHealthEffect" />
           <EntitySet Name="CodeQuestion" EntityType="RealHealthBaseModel.CodeQuestion" />
-          <EntitySet Name="DailyHealth" EntityType="RealHealthBaseModel.DailyHealth" />
           <EntitySet Name="Effect" EntityType="RealHealthBaseModel.Effect" />
-          <EntitySet Name="FormForDoctors" EntityType="RealHealthBaseModel.FormForDoctors" />
           <EntitySet Name="Gender" EntityType="RealHealthBaseModel.Gender" />
           <EntitySet Name="HealingMethod" EntityType="RealHealthBaseModel.HealingMethod" />
+          <EntitySet Name="MedicalAnswer" EntityType="RealHealthBaseModel.MedicalAnswer" />
           <EntitySet Name="MedicalCard" EntityType="RealHealthBaseModel.MedicalCard" />
+          <EntitySet Name="MedicalQuestion" EntityType="RealHealthBaseModel.MedicalQuestion" />
+          <EntitySet Name="MedicalScore" EntityType="RealHealthBaseModel.MedicalScore" />
+          <EntitySet Name="MedicalTest" EntityType="RealHealthBaseModel.MedicalTest" />
           <EntitySet Name="Role" EntityType="RealHealthBaseModel.Role" />
           <EntitySet Name="sysdiagrams" EntityType="RealHealthBaseModel.sysdiagrams" />
           <EntitySet Name="User" EntityType="RealHealthBaseModel.User" />
+          <EntitySet Name="UserMedicalTest" EntityType="RealHealthBaseModel.UserMedicalTest" />
           <AssociationSet Name="FK_BodyHealth_User" Association="RealHealthBaseModel.FK_BodyHealth_User">
             <End Role="User" EntitySet="User" />
             <End Role="BodyHealth" EntitySet="BodyHealth" />
@@ -341,29 +412,41 @@
             <End Role="CodeQuestion" EntitySet="CodeQuestion" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_DailyHealth_User" Association="RealHealthBaseModel.FK_DailyHealth_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="DailyHealth" EntitySet="DailyHealth" />
-          </AssociationSet>
           <AssociationSet Name="FK_Effect_HealingMethod" Association="RealHealthBaseModel.FK_Effect_HealingMethod">
             <End Role="HealingMethod" EntitySet="HealingMethod" />
             <End Role="Effect" EntitySet="Effect" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormForDoctors_User1" Association="RealHealthBaseModel.FK_FormForDoctors_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="FormForDoctors" EntitySet="FormForDoctors" />
           </AssociationSet>
           <AssociationSet Name="FK_MedicalCard_Gender" Association="RealHealthBaseModel.FK_MedicalCard_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
           </AssociationSet>
+          <AssociationSet Name="FK_MedicalAnswer_MedicalQuestion" Association="RealHealthBaseModel.FK_MedicalAnswer_MedicalQuestion">
+            <End Role="MedicalQuestion" EntitySet="MedicalQuestion" />
+            <End Role="MedicalAnswer" EntitySet="MedicalAnswer" />
+          </AssociationSet>
           <AssociationSet Name="FK_MedicalCard_User" Association="RealHealthBaseModel.FK_MedicalCard_User">
             <End Role="User" EntitySet="User" />
             <End Role="MedicalCard" EntitySet="MedicalCard" />
           </AssociationSet>
+          <AssociationSet Name="FK_MedicalQuestion_MedicalTest" Association="RealHealthBaseModel.FK_MedicalQuestion_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="MedicalQuestion" EntitySet="MedicalQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalScore_MedicalTest" Association="RealHealthBaseModel.FK_MedicalScore_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="MedicalScore" EntitySet="MedicalScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMedicalTest_MedicalTest" Association="RealHealthBaseModel.FK_UserMedicalTest_MedicalTest">
+            <End Role="MedicalTest" EntitySet="MedicalTest" />
+            <End Role="UserMedicalTest" EntitySet="UserMedicalTest" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="RealHealthBaseModel.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMedicalTest_User" Association="RealHealthBaseModel.FK_UserMedicalTest_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserMedicalTest" EntitySet="UserMedicalTest" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BodyHealth">
@@ -401,19 +484,6 @@
           <Property Name="IsCustom" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_User_CodeQuestion" FromRole="CodeQuestion" ToRole="User" />
         </EntityType>
-        <EntityType Name="DailyHealth">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HeartSystemReaction" Type="Single" Nullable="false" />
-          <Property Name="IndexOfMass" Type="Single" Nullable="false" />
-          <Property Name="BreathHoldingDuration" Type="Int32" Nullable="false" />
-          <Property Name="Score" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="DateOfFill" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_DailyHealth_User" FromRole="DailyHealth" ToRole="User" />
-        </EntityType>
         <EntityType Name="Effect">
           <Key>
             <PropertyRef Name="Id" />
@@ -433,21 +503,6 @@
           <NavigationProperty Name="BodyHealthEffect" Relationship="RealHealthBaseModel.FK_BodyHealthEffect_Effect" FromRole="Effect" ToRole="BodyHealthEffect" />
           <NavigationProperty Name="HealingMethod" Relationship="RealHealthBaseModel.FK_Effect_HealingMethod" FromRole="Effect" ToRole="HealingMethod" />
         </EntityType>
-        <EntityType Name="FormForDoctors">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateOfFill" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Neurologist" Type="Boolean" Nullable="false" />
-          <Property Name="Rheumatologist" Type="Boolean" Nullable="false" />
-          <Property Name="Otolaryngologist" Type="Boolean" Nullable="false" />
-          <Property Name="Gastroenterologist" Type="Boolean" Nullable="false" />
-          <Property Name="Allergist" Type="Boolean" Nullable="false" />
-          <Property Name="FullInspection" Type="Boolean" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_FormForDoctors_User1" FromRole="FormForDoctors" ToRole="User" />
-        </EntityType>
         <EntityType Name="Gender">
           <Key>
             <PropertyRef Name="Id" />
@@ -464,6 +519,16 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Effect" Relationship="RealHealthBaseModel.FK_Effect_HealingMethod" FromRole="HealingMethod" ToRole="Effect" />
         </EntityType>
+        <EntityType Name="MedicalAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+          <Property Name="MedicalQuestionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalQuestion" Relationship="RealHealthBaseModel.FK_MedicalAnswer_MedicalQuestion" FromRole="MedicalAnswer" ToRole="MedicalQuestion" />
+        </EntityType>
         <EntityType Name="MedicalCard">
           <Key>
             <PropertyRef Name="Id" />
@@ -479,6 +544,37 @@
           <Property Name="GenderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gender" Relationship="RealHealthBaseModel.FK_MedicalCard_Gender" FromRole="MedicalCard" ToRole="Gender" />
           <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_MedicalCard_User" FromRole="MedicalCard" ToRole="User" />
+        </EntityType>
+        <EntityType Name="MedicalQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MedicalTestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalAnswer" Relationship="RealHealthBaseModel.FK_MedicalAnswer_MedicalQuestion" FromRole="MedicalQuestion" ToRole="MedicalAnswer" />
+          <NavigationProperty Name="MedicalTest" Relationship="RealHealthBaseModel.FK_MedicalQuestion_MedicalTest" FromRole="MedicalQuestion" ToRole="MedicalTest" />
+        </EntityType>
+        <EntityType Name="MedicalScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinScore" Type="Int32" Nullable="false" />
+          <Property Name="MaxScore" Type="Int32" Nullable="false" />
+          <Property Name="MedicalTestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalTest" Relationship="RealHealthBaseModel.FK_MedicalScore_MedicalTest" FromRole="MedicalScore" ToRole="MedicalTest" />
+        </EntityType>
+        <EntityType Name="MedicalTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MedicalQuestion" Relationship="RealHealthBaseModel.FK_MedicalQuestion_MedicalTest" FromRole="MedicalTest" ToRole="MedicalQuestion" />
+          <NavigationProperty Name="MedicalScore" Relationship="RealHealthBaseModel.FK_MedicalScore_MedicalTest" FromRole="MedicalTest" ToRole="MedicalScore" />
+          <NavigationProperty Name="UserMedicalTest" Relationship="RealHealthBaseModel.FK_UserMedicalTest_MedicalTest" FromRole="MedicalTest" ToRole="UserMedicalTest" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -510,10 +606,20 @@
           <Property Name="CodeAnswer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BodyHealth" Relationship="RealHealthBaseModel.FK_BodyHealth_User" FromRole="User" ToRole="BodyHealth" />
           <NavigationProperty Name="CodeQuestion" Relationship="RealHealthBaseModel.FK_User_CodeQuestion" FromRole="User" ToRole="CodeQuestion" />
-          <NavigationProperty Name="DailyHealth" Relationship="RealHealthBaseModel.FK_DailyHealth_User" FromRole="User" ToRole="DailyHealth" />
-          <NavigationProperty Name="FormForDoctors" Relationship="RealHealthBaseModel.FK_FormForDoctors_User1" FromRole="User" ToRole="FormForDoctors" />
           <NavigationProperty Name="MedicalCard" Relationship="RealHealthBaseModel.FK_MedicalCard_User" FromRole="User" ToRole="MedicalCard" />
           <NavigationProperty Name="Role" Relationship="RealHealthBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="UserMedicalTest" Relationship="RealHealthBaseModel.FK_UserMedicalTest_User" FromRole="User" ToRole="UserMedicalTest" />
+        </EntityType>
+        <EntityType Name="UserMedicalTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MedicalTestId" Type="Int32" Nullable="false" />
+          <Property Name="CompleteDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="MedicalTest" Relationship="RealHealthBaseModel.FK_UserMedicalTest_MedicalTest" FromRole="UserMedicalTest" ToRole="MedicalTest" />
+          <NavigationProperty Name="User" Relationship="RealHealthBaseModel.FK_UserMedicalTest_User" FromRole="UserMedicalTest" ToRole="User" />
         </EntityType>
         <Association Name="FK_BodyHealth_User">
           <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
@@ -563,18 +669,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DailyHealth_User">
-          <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="RealHealthBaseModel.DailyHealth" Role="DailyHealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DailyHealth">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Effect_HealingMethod">
           <End Type="RealHealthBaseModel.HealingMethod" Role="HealingMethod" Multiplicity="1" />
           <End Type="RealHealthBaseModel.Effect" Role="Effect" Multiplicity="*" />
@@ -584,18 +678,6 @@
             </Principal>
             <Dependent Role="Effect">
               <PropertyRef Name="HealingMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormForDoctors_User1">
-          <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="RealHealthBaseModel.FormForDoctors" Role="FormForDoctors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FormForDoctors">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -611,6 +693,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MedicalAnswer_MedicalQuestion">
+          <End Type="RealHealthBaseModel.MedicalQuestion" Role="MedicalQuestion" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.MedicalAnswer" Role="MedicalAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalQuestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalAnswer">
+              <PropertyRef Name="MedicalQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MedicalCard_User">
           <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
           <End Type="RealHealthBaseModel.MedicalCard" Role="MedicalCard" Multiplicity="*" />
@@ -623,6 +717,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MedicalQuestion_MedicalTest">
+          <End Type="RealHealthBaseModel.MedicalTest" Role="MedicalTest" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.MedicalQuestion" Role="MedicalQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalQuestion">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalScore_MedicalTest">
+          <End Type="RealHealthBaseModel.MedicalTest" Role="MedicalTest" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.MedicalScore" Role="MedicalScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalScore">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMedicalTest_MedicalTest">
+          <End Type="RealHealthBaseModel.MedicalTest" Role="MedicalTest" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.UserMedicalTest" Role="UserMedicalTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMedicalTest">
+              <PropertyRef Name="MedicalTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Type="RealHealthBaseModel.Role" Role="Role" Multiplicity="1" />
           <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="*" />
@@ -632,6 +762,18 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMedicalTest_User">
+          <End Type="RealHealthBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="RealHealthBaseModel.UserMedicalTest" Role="UserMedicalTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMedicalTest">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -674,19 +816,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DailyHealth">
-            <EntityTypeMapping TypeName="RealHealthBaseModel.DailyHealth">
-              <MappingFragment StoreEntitySet="DailyHealth">
-                <ScalarProperty Name="DateOfFill" ColumnName="DateOfFill" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Score" ColumnName="Score" />
-                <ScalarProperty Name="BreathHoldingDuration" ColumnName="BreathHoldingDuration" />
-                <ScalarProperty Name="IndexOfMass" ColumnName="IndexOfMass" />
-                <ScalarProperty Name="HeartSystemReaction" ColumnName="HeartSystemReaction" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Effect">
             <EntityTypeMapping TypeName="RealHealthBaseModel.Effect">
               <MappingFragment StoreEntitySet="Effect">
@@ -701,21 +830,6 @@
                 <ScalarProperty Name="MainIcon" ColumnName="MainIcon" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FormForDoctors">
-            <EntityTypeMapping TypeName="RealHealthBaseModel.FormForDoctors">
-              <MappingFragment StoreEntitySet="FormForDoctors">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FullInspection" ColumnName="FullInspection" />
-                <ScalarProperty Name="Allergist" ColumnName="Allergist" />
-                <ScalarProperty Name="Gastroenterologist" ColumnName="Gastroenterologist" />
-                <ScalarProperty Name="Otolaryngologist" ColumnName="Otolaryngologist" />
-                <ScalarProperty Name="Rheumatologist" ColumnName="Rheumatologist" />
-                <ScalarProperty Name="Neurologist" ColumnName="Neurologist" />
-                <ScalarProperty Name="DateOfFill" ColumnName="DateOfFill" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -736,6 +850,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MedicalAnswer">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.MedicalAnswer">
+              <MappingFragment StoreEntitySet="MedicalAnswer">
+                <ScalarProperty Name="MedicalQuestionId" ColumnName="MedicalQuestionId" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MedicalCard">
             <EntityTypeMapping TypeName="RealHealthBaseModel.MedicalCard">
               <MappingFragment StoreEntitySet="MedicalCard">
@@ -747,6 +871,34 @@
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalQuestion">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.MedicalQuestion">
+              <MappingFragment StoreEntitySet="MedicalQuestion">
+                <ScalarProperty Name="MedicalTestId" ColumnName="MedicalTestId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalScore">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.MedicalScore">
+              <MappingFragment StoreEntitySet="MedicalScore">
+                <ScalarProperty Name="MedicalTestId" ColumnName="MedicalTestId" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalTest">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.MedicalTest">
+              <MappingFragment StoreEntitySet="MedicalTest">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -778,6 +930,16 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMedicalTest">
+            <EntityTypeMapping TypeName="RealHealthBaseModel.UserMedicalTest">
+              <MappingFragment StoreEntitySet="UserMedicalTest">
+                <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+                <ScalarProperty Name="MedicalTestId" ColumnName="MedicalTestId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -28,14 +28,17 @@ namespace Client.Components
         public virtual DbSet<BodyHealth> BodyHealth { get; set; }
         public virtual DbSet<BodyHealthEffect> BodyHealthEffect { get; set; }
         public virtual DbSet<CodeQuestion> CodeQuestion { get; set; }
-        public virtual DbSet<DailyHealth> DailyHealth { get; set; }
         public virtual DbSet<Effect> Effect { get; set; }
-        public virtual DbSet<FormForDoctors> FormForDoctors { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<HealingMethod> HealingMethod { get; set; }
+        public virtual DbSet<MedicalAnswer> MedicalAnswer { get; set; }
         public virtual DbSet<MedicalCard> MedicalCard { get; set; }
+        public virtual DbSet<MedicalQuestion> MedicalQuestion { get; set; }
+        public virtual DbSet<MedicalScore> MedicalScore { get; set; }
+        public virtual DbSet<MedicalTest> MedicalTest { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserMedicalTest> UserMedicalTest { get; set; }
     }
 }

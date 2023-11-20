@@ -12,16 +12,20 @@ namespace Client.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class DailyHealth
+    public partial class MedicalQuestion
     {
-        public int Id { get; set; }
-        public float HeartSystemReaction { get; set; }
-        public float IndexOfMass { get; set; }
-        public int BreathHoldingDuration { get; set; }
-        public int Score { get; set; }
-        public int UserId { get; set; }
-        public System.DateTime DateOfFill { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MedicalQuestion()
+        {
+            this.MedicalAnswer = new HashSet<MedicalAnswer>();
+        }
     
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int MedicalTestId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicalAnswer> MedicalAnswer { get; set; }
+        public virtual MedicalTest MedicalTest { get; set; }
     }
 }
