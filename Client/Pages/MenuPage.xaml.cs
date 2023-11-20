@@ -33,7 +33,7 @@ namespace Client.Pages
 
         private void ListQuestionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MenuFrame.Navigate(new MedicalTestView(App.DB.MedicalTest.FirstOrDefault()));
+            MenuFrame.Navigate(new MedicalTestList());
         }
 
         private void HealthCheckBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

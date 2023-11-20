@@ -77,8 +77,12 @@
       <DependentUpon>RealHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\PartialClasses\MedicalScore.cs" />
+    <Compile Include="Components\PartialClasses\MedicalTest.cs" />
     <Compile Include="Components\UserMedicalTest.cs">
       <DependentUpon>RealHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MedicalTestList.xaml.cs">
+      <DependentUpon>MedicalTestList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MedicalTestView.xaml.cs">
       <DependentUpon>MedicalTestView.xaml</DependentUpon>
@@ -153,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MedicalCardFields.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MedicalTestList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
