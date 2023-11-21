@@ -265,7 +265,6 @@
       <LastGenOutput>RealHealthModel.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\HealthIcon.png" />
-    <Resource Include="Resources\Frame 47.png" />
     <Resource Include="Resources\Human.png" />
   </ItemGroup>
   <ItemGroup>

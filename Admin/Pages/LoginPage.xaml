@@ -1,0 +1,39 @@
+﻿<Page x:Class="Admin.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Admin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="LoginPage" Loaded="Page_Loaded">
+
+    <Grid Background="#FFDADADA">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 0">
+                <Image Width="150" Height="150" Source="/Resources/Logo.png" RenderOptions.BitmapScalingMode="Fant"/>
+                <StackPanel Margin="20 0 0 0">
+                    <TextBlock Text="Real Health" Style="{StaticResource Header}" FontSize="60" Foreground="#FFB30707"/>
+                    <TextBlock Text="Панель администратора" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0 20 0 0">
+                <Line Stroke="#FFB30707" StrokeThickness="4" X1="0" X2="615"/>
+                <StackPanel Margin="20 10 20 0">
+                    <TextBlock Text="Логин" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                    <TextBox x:Name="TbLogin" Height="40" MaxLength="20" FontSize="28"  BorderThickness="2" Style="{StaticResource FontTextBox}" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+
+                    <TextBlock Text="Пароль" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 20 0 0"/>
+                    <PasswordBox x:Name="PbPassword" Height="40" MaxLength="20" FontSize="28"  BorderThickness="2" Style="{StaticResource FontPasswordBox}" PasswordChar="*" PreviewKeyDown="NoneSpaceBar_PreviewKeyDown"/>
+                    <Grid Margin="0 10 0 10">
+                        <Viewbox Height="30" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <CheckBox x:Name="CbRemember" Content="Запомнить пароль" Style="{StaticResource CheckBoxDefault}" VerticalContentAlignment="Bottom" Cursor="Hand" />
+                        </Viewbox>
+                        <Button x:Name="LoginBtn" Content="Авторизация" Width="250" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Right" Click="LoginBtn_Click"/>
+                    </Grid>
+
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

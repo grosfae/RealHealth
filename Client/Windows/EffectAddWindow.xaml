@@ -19,7 +19,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
-                        <Image Height="60" Width="60" Source="{Binding MainIcon}"/>
+                        <Image Height="60" Width="60" Source="{Binding MainIcon}" RenderOptions.BitmapScalingMode="Fant"/>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>

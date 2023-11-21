@@ -4,6 +4,113 @@
              xmlns:local="clr-namespace:Admin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBlock" x:Key="Header">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#EuropeExtendedC"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SpecialSymbols">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#FontAwesome"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SecondText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Arkhip"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="HyperLinkText">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF00965C"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FFB30707"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MenuButton">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Fontawesome"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF00965C"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FFB30707"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="CheckBox" x:Key="CheckBoxDefault">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#PT Sans"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="#FFB30707"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="FontComboBox">
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="FontTextBox">
+            <Setter Property="BorderBrush" Value="#FF848484"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
+        </Style>
+
+        <Style TargetType="PasswordBox" x:Key="FontPasswordBox">
+            <Setter Property="BorderBrush" Value="#FF848484"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Raleway"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="DefaltBtn">
+            <Setter Property="BorderBrush" Value="#FF00965C"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF00965C"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Arkhip"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" >
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF00965C"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="DefaltRedBtn">
+            <Setter Property="BorderBrush" Value="#FFB30707"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FFB30707"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#Arkhip"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" >
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFB30707"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
+
 </Application>

@@ -213,6 +213,10 @@ namespace Client.Components
                 {
                     head -= effect.Effect.HeadHpDecrease;
                 }
+                if(head < 0)
+                {
+                    head = 0;
+                }
                 return head;
             }
         }
@@ -225,6 +229,10 @@ namespace Client.Components
                 {
                     torso -= effect.Effect.TorsoHpDecrease;
                 }
+                if (torso < 0)
+                {
+                    torso = 0;
+                }
                 return torso;
             }
         }
@@ -236,6 +244,10 @@ namespace Client.Components
                 foreach (var effect in BodyHealthEffect)
                 {
                     stomach -= effect.Effect.StomachHpDecrease;       
+                }
+                if (stomach < 0)
+                {
+                    stomach = 0;
                 }
                 return stomach;
             }
@@ -250,6 +262,10 @@ namespace Client.Components
                 {
                     leftHand -= effect.Effect.LeftHandHpDecrease;
                 }
+                if (leftHand < 0)
+                {
+                    leftHand = 0;
+                }
                 return leftHand;
             }
         }
@@ -262,6 +278,10 @@ namespace Client.Components
                 foreach (var effect in BodyHealthEffect)
                 {
                     rightHand -= effect.Effect.RightHandHpDecrease;
+                }
+                if (rightHand < 0)
+                {
+                    rightHand = 0;
                 }
                 return rightHand;
             }
@@ -276,6 +296,10 @@ namespace Client.Components
                 {
                     rightLeg -= effect.Effect.RightHandHpDecrease;
                 }
+                if (rightLeg < 0)
+                {
+                    rightLeg = 0;
+                }
                 return rightLeg;
             }
         }
@@ -289,6 +313,10 @@ namespace Client.Components
                 {
                     leftLeg -= effect.Effect.LeftLegHpDecrease;
                 }
+                if (leftLeg < 0)
+                {
+                    leftLeg = 0;
+                }
                 return leftLeg;
             }
         }
@@ -299,7 +327,7 @@ namespace Client.Components
             {
                 if (GeneralHealth == 0)
                 {
-                    return "Вызовите скорую";
+                    return "Вызывайте скорую";
                 }
                 if (GeneralHealth <= 150 && GeneralHealth > 0)
                 {

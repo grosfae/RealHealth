@@ -1,0 +1,43 @@
+﻿<Page x:Class="Admin.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Admin.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1200"
+      Title="MenuPage">
+
+    <ScrollViewer>
+        <Grid Background="#FFDADADA">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+                <StackPanel Orientation="Horizontal" Margin="10 10 10 0" HorizontalAlignment="Left">
+                    <Image Width="150" Height="150" Source="/Resources/Logo.png" RenderOptions.BitmapScalingMode="Fant"/>
+                    <StackPanel Margin="20 0 0 0">
+                        <TextBlock Text="Real Health" Style="{StaticResource Header}" FontSize="60" Foreground="#FFB30707"/>
+                        <TextBlock Text="Ваше здоровье - ваша ответственность" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                    </StackPanel>
+                    <TextBlock Text="Панель администратора" FontSize="38" Width="370" Margin="110 0 0 0" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}"/>
+                </StackPanel>
+                <StackPanel Margin="0 20 0 20" Width="1100">
+                    <Line Stroke="#FFB30707" StrokeThickness="4" X1="0" X2="1100"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" Background="Azure">
+                            <StackPanel x:Name="EffectsListBtn" Grid.Column="0" Width="100" Margin="0 10 0 0" MouseLeftButtonDown="EffectsListBtn_MouseLeftButtonDown">
+                                <TextBlock Style="{StaticResource MenuButton}" FontSize="70" Text="&#xf0f1;" TextAlignment="Center" HorizontalAlignment="Center" Cursor="Hand" />
+                            </StackPanel>
+
+                            <StackPanel x:Name="ListQuestionBtn" Grid.Column="0" Width="100" Margin="0 20 0 20" MouseLeftButtonDown="ListQuestionBtn_MouseLeftButtonDown">
+                                <TextBlock Style="{StaticResource MenuButton}" FontSize="70" Text="&#xf0cb;" TextAlignment="Center" HorizontalAlignment="Center" Cursor="Hand" />
+                            </StackPanel>
+
+                        </StackPanel>
+                        <Frame Width="1000" Height="auto" NavigationUIVisibility="Hidden" x:Name="MenuFrame"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+    </ScrollViewer>
+
+</Page>

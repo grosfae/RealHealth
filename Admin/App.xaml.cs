@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Admin.Components;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace Admin
     /// </summary>
     public partial class App : Application
     {
+        public static RealHealthBaseEntities DB = new RealHealthBaseEntities();
+        public static User LoggedUser;
     }
 }

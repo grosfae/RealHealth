@@ -1,5 +1,4 @@
-﻿using Admin.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Admin
+namespace Admin.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MenuPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MenuPage : Page
     {
-        public MainWindow()
+        public MenuPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
+        }
+
+        private void ListQuestionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+
+        private void EffectsListBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

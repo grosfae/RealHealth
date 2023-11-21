@@ -287,7 +287,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" ToolTip="{Binding Effect.Description}">
-                                <Image Height="90" Width="90" Source="{Binding MainIcon}"/>
+                                <Image Height="90" Width="90" Source="{Binding Effect.MainIcon}"/>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
