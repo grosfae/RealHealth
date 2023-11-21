@@ -19,11 +19,8 @@
 
                 <TextBlock Text="Метод лечения" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0"/>
                 <ComboBox x:Name="CbHealingMethod" Height="40" DisplayMemberPath="Name" FontSize="28" BorderThickness="2" />
-                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button x:Name="ClearBtn" Content="Очистить" Width="160" FontSize="22" Height="50" Style="{StaticResource DefaltRedBtn}" HorizontalAlignment="Right" Click="ClearBtn_Click" Margin="0 20 0 0"/>
-
-                    <Button x:Name="NextBtn" Content="Сохранить" Width="320" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Right" Click="NextBtn_Click" Margin="20 20 0 0" Cursor="Hand"/>
-                </StackPanel>
+                <Button x:Name="NextBtn" Content="Сохранить" Width="320" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Center" Click="NextBtn_Click" Margin="0 20 0 0" Cursor="Hand"/>
+                
             </StackPanel>
             <StackPanel Margin="20 10 20 0" Width="440" HorizontalAlignment="Left" Orientation="Horizontal">
 

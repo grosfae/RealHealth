@@ -1,8 +1,10 @@
 ﻿using Admin.Components;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,11 +29,21 @@ namespace Admin.Pages
             InitializeComponent();
             contextEffect = effect;
             DataContext = contextEffect;
+            CbHealingMethod.ItemsSource = App.DB.HealingMethod.ToList();
         }
 
         private void ImageAddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var dialog = new Microsoft.Win32.OpenFileDialog()
+            {
+                Filter = "*.jpg|*.jpg|*.png|*.png|*.jpeg|*.jpeg"
+            };
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                contextEffect.MainIcon = File.ReadAllBytes(dialog.FileName);
+                DataContext = null;
+                DataContext = contextEffect;
+            }
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
@@ -51,19 +63,31 @@ namespace Admin.Pages
             }
             if (contextEffect.HeadHpDecrease < 0 || contextEffect.HeadHpDecrease > 35)
             {
-                errorMessage += "Введите корректный урон головы!\n";
+                errorMessage += "Введите корректный урон по голове!\n";
             }
             if (contextEffect.TorsoHpDecrease < 0 || contextEffect.TorsoHpDecrease > 80)
             {
-                errorMessage += "Введите корректный урон грудной клетки!\n";
+                errorMessage += "Введите корректный урон по грудной клетке!\n";
             }
             if (contextEffect.StomachHpDecrease < 0 || contextEffect.StomachHpDecrease > 70)
             {
-                errorMessage += "Введите корректный урон живота!\n";
+                errorMessage += "Введите корректный урон по животу!\n";
             }
             if (contextEffect.LeftHandHpDecrease < 0 || contextEffect.LeftHandHpDecrease > 60)
             {
-                errorMessage += "Введите корректный урон голове!\n";
+                errorMessage += "Введите корректный урон по левой руке!\n";
+            }
+            if (contextEffect.RightHandHpDecrease < 0 || contextEffect.RightHandHpDecrease > 60)
+            {
+                errorMessage += "Введите корректный урон по правой руке!\n";
+            }
+            if (contextEffect.LeftLegHpDecrease < 0 || contextEffect.LeftLegHpDecrease > 65)
+            {
+                errorMessage += "Введите корректный урон по левой ноге!\n";
+            }
+            if (contextEffect.RightLegHpDecrease < 0 || contextEffect.RightLegHpDecrease > 65)
+            {
+                errorMessage += "Введите корректный урон по правой ноге!\n";
             }
             if (string.IsNullOrEmpty(errorMessage) == false)
             {
@@ -75,9 +99,20 @@ namespace Admin.Pages
             
         }
 
-        private void ClearBtn_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void NoneSpaceBar_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+        private void Numbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
