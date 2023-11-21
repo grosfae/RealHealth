@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Admin.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,7 @@ namespace Admin.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EffectEditPage(new Effect()));
         }
     }
 }

@@ -94,6 +94,11 @@ namespace Admin.Pages
                 MessageBox.Show(errorMessage);
                 return;
             }
+            if(contextEffect.Id == 0)
+            {
+                App.DB.Effect.Add(contextEffect);
+            }
+            App.DB.SaveChanges();
             MessageBox.Show("Сохранение успешно!");
             NavigationService.GoBack();
             
