@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Admin.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="1000"
-      Title="EffectsListPage">
+      Title="EffectsListPage" Loaded="Page_Loaded">
 
     <Grid Margin="0 10 0 0">
         <Grid.RowDefinitions>
@@ -27,16 +27,15 @@
                     <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
                         <Image Height="200" Width="200" Source="{Binding MainIcon}" RenderOptions.BitmapScalingMode="Fant"/>
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="31*"/>
-                                <ColumnDefinition Width="159*"/>
-                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
+                          
                             <TextBlock Text="{Binding Name}" FontSize="32" Width="760" TextWrapping="Wrap" Foreground="#FF00965C"  Style="{StaticResource SecondText}" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                            <TextBlock Text="{Binding Description}" FontSize="22" Width="760" TextWrapping="Wrap" Foreground="#FF929292" Style="{StaticResource SecondText}" VerticalAlignment="Top" Grid.Row="1"/>
+
                             <Button x:Name="EditBtn" Style="{StaticResource DefaltBtn}" Content="Изменение" Width="280" Height="25" FontSize="18" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Click="EditBtn_Click" Grid.ColumnSpan="2"/>
                             <Button x:Name="RemoveBtn" Style="{StaticResource DefaltRedBtn}" Content="Удалить" Width="280" Height="25" FontSize="18" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Click="RemoveBtn_Click" Grid.Column="1" Margin="356,0,0,0"/>
 

@@ -27,12 +27,13 @@ namespace Admin.Pages
 
         private void ListQuestionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
         }
 
 
         private void EffectsListBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            MenuFrame.Navigate(new EffectsListPage());
         }
     }
 }

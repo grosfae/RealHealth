@@ -18,7 +18,7 @@
                 <TextBox x:Name="TbSurname" Text="{Binding Description}" Height="140" MaxLength="150" FontSize="28" BorderThickness="2" Style="{StaticResource FontTextBox}"/>
 
                 <TextBlock Text="Метод лечения" FontSize="28" Width="390" HorizontalAlignment="Left" Foreground="#FF00965C" TextWrapping="Wrap" Style="{StaticResource SecondText}" Margin="0 10 0 0"/>
-                <ComboBox x:Name="CbHealingMethod" Height="40" DisplayMemberPath="Name" FontSize="28" BorderThickness="2" />
+                <ComboBox x:Name="CbHealingMethod" Height="40" DisplayMemberPath="Name" SelectedItem="{Binding HealingMethod}" FontSize="28" BorderThickness="2" />
                 <Button x:Name="NextBtn" Content="Сохранить" Width="320" FontSize="22" Height="50" Style="{StaticResource DefaltBtn}" HorizontalAlignment="Center" Click="NextBtn_Click" Margin="0 20 0 0" Cursor="Hand"/>
                 
             </StackPanel>
