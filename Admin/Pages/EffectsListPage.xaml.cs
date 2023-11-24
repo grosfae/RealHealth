@@ -24,7 +24,7 @@ namespace Admin.Pages
         public EffectsListPage()
         {
             InitializeComponent();
-            LvEffects.ItemsSource = App.DB.Effect.ToList();
+            
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -45,7 +45,7 @@ namespace Admin.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            LvEffects.ItemsSource = App.DB.Effect.ToList();
         }
     }
 }

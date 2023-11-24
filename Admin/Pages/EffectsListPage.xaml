@@ -17,7 +17,6 @@
             <Grid>
                 <TextBlock Text="Список симптомов" FontSize="30"  HorizontalAlignment="Left" Foreground="#FF00965C"  Style="{StaticResource SecondText}" VerticalAlignment="Top" Margin="5 0 0 0"/>
                 <Button x:Name="AddBtn" Style="{StaticResource DefaltBtn}" Content="Добавить" Width="280" Height="25" FontSize="18" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddBtn_Click"/>
-
             </Grid>
             <Line Stroke="#FFB30707" StrokeThickness="3" X1="0" X2="1000"/>
         </StackPanel>
